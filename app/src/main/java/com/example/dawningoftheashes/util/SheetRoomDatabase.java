@@ -1,29 +1,30 @@
-package util;
+package com.example.dawningoftheashes.util;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.room.AutoMigration;
 import androidx.room.Database;
-import androidx.room.DeleteColumn;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-import androidx.room.migration.AutoMigrationSpec;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import data.TableDao;
-import model.Table;
+import com.example.dawningoftheashes.data.TableDao;
+import com.example.dawningoftheashes.model.Monster;
+import com.example.dawningoftheashes.model.Player;
+import com.example.dawningoftheashes.model.Sheet;
+import com.example.dawningoftheashes.model.Table;
 
 @Database(
-        entities = {Table.class},
+        entities = {Table.class, Monster.class, Sheet.class, Player.class},
         version = 1,
-        exportSchema = true
+        exportSchema = false
 )
-
+@TypeConverters({Converters.class})
 public abstract class SheetRoomDatabase extends RoomDatabase
 {
     public abstract TableDao tableDao();

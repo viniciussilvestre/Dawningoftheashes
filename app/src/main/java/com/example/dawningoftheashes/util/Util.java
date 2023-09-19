@@ -1,4 +1,4 @@
-package util;
+package com.example.dawningoftheashes.util;
 
 public class Util
 {

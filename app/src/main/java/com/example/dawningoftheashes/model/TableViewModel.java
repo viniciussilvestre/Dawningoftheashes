@@ -1,4 +1,4 @@
-package model;
+package com.example.dawningoftheashes.model;
 
 import android.app.Application;
 
@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import data.Repository;
+import com.example.dawningoftheashes.data.Repository;
 
 public class TableViewModel extends AndroidViewModel
 {

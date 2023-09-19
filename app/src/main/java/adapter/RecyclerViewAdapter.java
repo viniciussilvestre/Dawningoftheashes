@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dawningoftheashes.R;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import model.Table;
+import com.example.dawningoftheashes.model.Table;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 {

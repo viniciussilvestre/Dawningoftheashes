@@ -16,14 +16,14 @@ import android.os.Bundle;
 import com.example.dawningoftheashes.databinding.ActivityMainBinding;
 import com.google.android.material.elevation.SurfaceColors;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import adapter.RecyclerViewAdapter;
-import data.Repository;
-import model.Table;
-import model.TableViewModel;
-import util.Util;
+
+import com.example.dawningoftheashes.model.Table;
+import com.example.dawningoftheashes.model.TableViewModel;
+import com.example.dawningoftheashes.util.Util;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnContactClickListener
 {
@@ -39,6 +39,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                 {
                     Intent data = result.getData();
                     assert data != null;
+                }
+            }
+    );
+
+    ActivityResultLauncher<Intent> launchCreateTable = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result ->
+            {
+                if (result.getResultCode() == Activity.RESULT_OK)
+                {
+                    Intent data = result.getData();
+                    assert data != null;
+                    Table table = new Table();
+                    table.setName(data.getStringExtra(Util.NAME_REPLY));
+                    TableViewModel.insertTable(table);
                 }
             }
     );
@@ -90,6 +105,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
+        binding.addButton.setOnClickListener(view ->
+        {
+            Intent intent = new Intent(MainActivity.this, CreateTable.class);
+            intent.putExtra(Util.SHEETTYPE, Util.DUNGEONS_AND_DRAGONS);
+            openCreateTable(intent);
+        });
+    }
+
+    private void openCreateTable(Intent intent)
+    {
+        launchCreateTable.launch(intent);
     }
 
     public void openCharacterSheet(Intent intent)
