@@ -22,7 +22,7 @@ public class TableViewModel extends AndroidViewModel
         allTables = repository.getAllTables();
     }
 
-        public LiveData<List<Table>> getAllSheetsDnd()
+        public LiveData<List<Table>> getAllTables()
     {
         return allTables;
     }

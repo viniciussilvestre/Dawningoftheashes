@@ -5,6 +5,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +28,7 @@ import util.Util;
 public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnContactClickListener
 {
     private ActivityMainBinding binding;
-    private TableViewModel sheetViewModel;
+    private TableViewModel tableViewModel;
     private RecyclerViewAdapter recyclerViewAdapter;
 
     ActivityResultLauncher<Intent> launchOpenTable = registerForActivityResult(
@@ -51,8 +52,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tableViewModel = new ViewModelProvider.AndroidViewModelFactory(MainActivity.this.getApplication()).create(TableViewModel.class);
 
-        sheetViewModel.getAllSheetsDnd().observe(this, tables ->
+        tableViewModel.getAllTables().observe(this, tables ->
         {
             recyclerViewAdapter = new RecyclerViewAdapter(tables, MainActivity.this, this);
             binding.recyclerView.setAdapter(recyclerViewAdapter);
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     @Override
     public void onContactClick(int position)
     {
-        Table table = Objects.requireNonNull(sheetViewModel.getAllSheetsDnd().getValue()).get(position);
+        Table table = Objects.requireNonNull(tableViewModel.getAllTables().getValue()).get(position);
         Intent intent = new Intent(MainActivity.this, Table.class);
         intent.putExtra(Util.CHARACTER_ID, table.getId());
         openCharacterSheet(intent);
