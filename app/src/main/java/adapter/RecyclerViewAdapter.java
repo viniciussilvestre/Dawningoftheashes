@@ -12,15 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dawningoftheashes.R;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import model.Table;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 {
     private OnContactClickListener contactClickListener;
+    private List<Table> tablesList;
     private Context context;
 
-    public RecyclerViewAdapter(Context context, OnContactClickListener onContactClickListener)
+    public RecyclerViewAdapter(List<Table> tablesList,Context context, OnContactClickListener onContactClickListener)
     {
+        this.tablesList = tablesList;
         this.context = context;
         this.contactClickListener = onContactClickListener;
     }
@@ -36,13 +42,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-
+        Table table = Objects.requireNonNull(tablesList.get(position));
+        String tableName = table.getName();
+        holder.name.setText(tableName);
     }
 
     @Override
     public int getItemCount()
     {
-        return 0;
+        return tablesList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
