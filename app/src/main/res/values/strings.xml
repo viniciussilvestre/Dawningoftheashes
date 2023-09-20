@@ -3,4 +3,6 @@
     <string name="addTable">Add table</string>
     <string name="rowNameText">Nome da mesa</string>
     <string name="imageDescription">Table icon</string>
+    <string name="tableName">Table name</string>
+    <string name="saveButtonText">Save</string>
 </resources>
