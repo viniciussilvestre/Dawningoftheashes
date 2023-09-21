@@ -27,6 +27,11 @@ public class PlayerViewModel extends AndroidViewModel
         return allPlayers;
     }
 
+    public LiveData<Player> getLocalPlayer()
+    {
+        return repository.getLocalPlayer();
+    }
+
     public static void insertPlayer(Player player)
     {
         repository.insertPlayer(player);

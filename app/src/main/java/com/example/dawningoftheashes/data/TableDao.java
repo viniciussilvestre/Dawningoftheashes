@@ -58,6 +58,8 @@ public interface TableDao
     void delete(Player player);
     @Query("SELECT * FROM player_tables ORDER BY name ASC")
     LiveData<List<Player>> getAllPlayers();
+    @Query("SELECT * FROM player_tables WHERE isLocalUser == 1")
+    LiveData<Player> getLocalPlayer();
     @Query("SELECT * FROM player_tables WHERE player_tables.playerId == :id")
     LiveData<Player> getPlayer(int id);
     @Update

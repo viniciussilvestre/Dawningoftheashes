@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DawningOfTheAshes"
         tools:targetApi="31">
         <activity
+            android:name=".TableView"
+            android:exported="false" />
+        <activity
             android:name=".CreateTable"
             android:exported="false" />
         <activity

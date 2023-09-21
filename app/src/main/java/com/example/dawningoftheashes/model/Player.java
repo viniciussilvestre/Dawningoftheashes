@@ -13,22 +13,25 @@ public class Player implements Parcelable
     @PrimaryKey(autoGenerate = true)
     private int playerId;
     private String name;
+    private boolean isLocalUser;
 
     public Player()
     {
 
     }
 
-    public Player(int playerId, String name)
+    public Player(int playerId, String name, boolean isLocalUser)
     {
         this.playerId = playerId;
         this.name = name;
+        this.isLocalUser = isLocalUser;
     }
 
     public Player(Parcel source)
     {
         this.playerId = source.readInt();
         this.name = source.readString();
+        this.isLocalUser = source.readByte() != 0;
     }
 
     public int getPlayerId()
@@ -51,6 +54,16 @@ public class Player implements Parcelable
         this.name = name;
     }
 
+    public boolean isLocalUser()
+    {
+        return isLocalUser;
+    }
+
+    public void setLocalUser(boolean localUser)
+    {
+        isLocalUser = localUser;
+    }
+
     @Override
     public int describeContents()
     {
@@ -62,6 +75,7 @@ public class Player implements Parcelable
     {
         dest.writeInt(playerId);
         dest.writeString(name);
+        dest.writeByte((byte) (isLocalUser ? 1 : 0));
     }
 
     public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>()

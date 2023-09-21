@@ -5,4 +5,5 @@
     <string name="imageDescription">Table icon</string>
     <string name="tableName">Table name</string>
     <string name="saveButtonText">Save</string>
+    <string name="tableLevelHint">Table starting level</string>
 </resources>

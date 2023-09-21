@@ -55,4 +55,18 @@ public class Converters
         Gson gson = new Gson();
         return gson.toJson(list);
     }
+
+    @TypeConverter
+    public static Player fromSinglePlayerString(String value)
+    {
+        Type listType = new TypeToken<Player>() {}.getType();
+        return new Gson().fromJson(value, listType);
+    }
+
+    @TypeConverter
+    public static String fromSinglePlayer(Player player)
+    {
+        Gson gson = new Gson();
+        return gson.toJson(player);
+    }
 }

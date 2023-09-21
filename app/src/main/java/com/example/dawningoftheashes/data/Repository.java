@@ -71,6 +71,11 @@ public class Repository
         return tableDao.getPlayer(id);
     }
 
+    public LiveData<Player> getLocalPlayer()
+    {
+        return tableDao.getLocalPlayer();
+    }
+
     public void insertTable(Table table)
     {
         SheetRoomDatabase.databaseWriteExecutor.execute(() ->

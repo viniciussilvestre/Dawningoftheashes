@@ -16,10 +16,9 @@ import android.os.Bundle;
 import com.example.dawningoftheashes.databinding.ActivityMainBinding;
 import com.google.android.material.elevation.SurfaceColors;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
-import adapter.RecyclerViewAdapter;
+import com.example.dawningoftheashes.adapter.RecyclerViewAdapter;
 
 import com.example.dawningoftheashes.model.Table;
 import com.example.dawningoftheashes.model.TableViewModel;
@@ -52,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                     Intent data = result.getData();
                     assert data != null;
                     Table table = new Table();
+                    table.setGm(data.getParcelableExtra(Util.GM_REPLY));
+                    int startingLevel = data.getIntExtra(Util.STARTING_LEVEL, 1);
+                    table.setStartingLevel(startingLevel);
+                    table.setCurrentLevel(startingLevel);
                     table.setName(data.getStringExtra(Util.NAME_REPLY));
                     TableViewModel.insertTable(table);
                 }
@@ -109,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         binding.addButton.setOnClickListener(view ->
         {
             Intent intent = new Intent(MainActivity.this, CreateTable.class);
-            intent.putExtra(Util.SHEETTYPE, Util.DUNGEONS_AND_DRAGONS);
             openCreateTable(intent);
         });
     }
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         launchCreateTable.launch(intent);
     }
 
-    public void openCharacterSheet(Intent intent)
+    public void openTable(Intent intent)
     {
         launchOpenTable.launch(intent);
     }
@@ -128,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     public void onContactClick(int position)
     {
         Table table = Objects.requireNonNull(tableViewModel.getAllTables().getValue()).get(position);
-        Intent intent = new Intent(MainActivity.this, Table.class);
-        intent.putExtra(Util.CHARACTER_ID, table.getId());
-        openCharacterSheet(intent);
+        Intent intent = new Intent(MainActivity.this, TableView.class);
+        intent.putExtra(Util.TABLE_ID, table.getId());
+        openTable(intent);
     }
 }
