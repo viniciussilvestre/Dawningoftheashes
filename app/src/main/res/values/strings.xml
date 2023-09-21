@@ -6,4 +6,8 @@
     <string name="tableName">Table name</string>
     <string name="saveButtonText">Save</string>
     <string name="tableLevelHint">Table starting level</string>
+    <string name="startText">Start</string>
+    <string name="playerNameHint">Player name</string>
+    <string name="createPlayerText">Create player</string>
+    <string name="notAPlayerYet">Player name field is empty</string>
 </resources>

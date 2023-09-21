@@ -14,6 +14,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.dawningoftheashes.databinding.ActivityMainBinding;
+import com.example.dawningoftheashes.model.Player;
+import com.example.dawningoftheashes.model.PlayerViewModel;
+import com.example.dawningoftheashes.ui.CreateTable;
+import com.example.dawningoftheashes.ui.TableView;
 import com.google.android.material.elevation.SurfaceColors;
 
 import java.util.Objects;
@@ -28,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 {
     private ActivityMainBinding binding;
     private TableViewModel tableViewModel;
+    private PlayerViewModel playerViewModel;
     private RecyclerViewAdapter recyclerViewAdapter;
+    private Player currentLocalPlayer;
 
     ActivityResultLauncher<Intent> launchOpenTable = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -56,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                     table.setStartingLevel(startingLevel);
                     table.setCurrentLevel(startingLevel);
                     table.setName(data.getStringExtra(Util.NAME_REPLY));
+                    table.setGm(currentLocalPlayer);
                     TableViewModel.insertTable(table);
                 }
             }
@@ -71,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         tableViewModel = new ViewModelProvider.AndroidViewModelFactory(MainActivity.this.getApplication()).create(TableViewModel.class);
+        playerViewModel = new ViewModelProvider.AndroidViewModelFactory(MainActivity.this.getApplication()).create(PlayerViewModel.class);
+        handleIntent(getIntent());
 
         tableViewModel.getAllTables().observe(this, tables ->
         {
@@ -112,8 +121,29 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         binding.addButton.setOnClickListener(view ->
         {
             Intent intent = new Intent(MainActivity.this, CreateTable.class);
+            intent.putExtra(Util.PLAYER_ID, currentLocalPlayer.getPlayerId());
             openCreateTable(intent);
         });
+    }
+
+    private void handleIntent(Intent intent)
+    {
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            boolean hasUser = extras.getBoolean(Util.HAS_USER);
+            if (!hasUser)
+            {
+                Player localPlayer = new Player();
+                localPlayer.setName(extras.getString(Util.LOCAL_PLAYER_NAME));
+                localPlayer.setLocalUser(true);
+                PlayerViewModel.insertPlayer(localPlayer);
+                currentLocalPlayer = localPlayer;
+            }
+            else
+            {
+                currentLocalPlayer = playerViewModel.getLocalPlayer().getValue();
+            }
+        }
     }
 
     private void openCreateTable(Intent intent)

@@ -11,21 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DawningOfTheAshes"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
-            android:name=".TableView"
-            android:exported="false" />
-        <activity
-            android:name=".CreateTable"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".ui.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.TableView"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CreateTable"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
         </activity>
     </application>
 

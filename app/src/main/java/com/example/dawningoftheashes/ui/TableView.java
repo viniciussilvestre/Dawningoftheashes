@@ -1,10 +1,11 @@
-package com.example.dawningoftheashes;
+package com.example.dawningoftheashes.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 
+import com.example.dawningoftheashes.R;
 import com.example.dawningoftheashes.databinding.ActivityTableViewBinding;
 import com.google.android.material.elevation.SurfaceColors;
 

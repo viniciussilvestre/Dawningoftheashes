@@ -46,7 +46,7 @@ public class Repository
         return allMonsters;
     }
 
-    public LiveData<List<Player>> getAllPLayers()
+    public LiveData<List<Player>> getAllPlayers()
     {
         return allPlayers;
     }
@@ -73,7 +73,7 @@ public class Repository
 
     public LiveData<Player> getLocalPlayer()
     {
-        return tableDao.getLocalPlayer();
+        return tableDao.getPlayer(1);
     }
 
     public void insertTable(Table table)

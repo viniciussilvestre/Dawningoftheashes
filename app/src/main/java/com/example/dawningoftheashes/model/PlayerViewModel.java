@@ -19,10 +19,10 @@ public class PlayerViewModel extends AndroidViewModel
     {
         super(application);
         repository = new Repository(application);
-        allPlayers = repository.getAllPLayers();
+        allPlayers = repository.getAllPlayers();
     }
 
-    public LiveData<List<Player>> getAllSheets()
+    public LiveData<List<Player>> getAllPlayers()
     {
         return allPlayers;
     }
