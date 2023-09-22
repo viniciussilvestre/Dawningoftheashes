@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.dawningoftheashes.model.Monster;
@@ -65,4 +66,12 @@ public interface TableDao
 
     @Query("SELECT * FROM rpg_tables WHERE name LIKE :searchQuery")
     LiveData<List<Table>> searchDatabase(String searchQuery);
+
+    @Transaction
+    @Query("SELECT * FROM rpg_tables")
+    LiveData<List<TableAndSheet>> getTableAndSheets();
+
+    @Transaction
+    @Query("SELECT * FROM player_tables")
+    LiveData<List<PlayerAndSheet>> getPlayerAndSheets();
 }

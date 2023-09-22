@@ -14,17 +14,19 @@ public class Sheet implements Parcelable
     private int sheetId;
     private String sheetName;
     private int playerId;
+    private int tableId;
 
     public Sheet()
     {
 
     }
 
-    public Sheet(int sheetId, String sheetName, int playerId)
+    public Sheet(int sheetId, String sheetName, int playerId, int tableId)
     {
         this.sheetId = sheetId;
         this.sheetName = sheetName;
         this.playerId = playerId;
+        this.tableId = tableId;
     }
 
     public Sheet(Parcel source)
@@ -32,6 +34,7 @@ public class Sheet implements Parcelable
         this.sheetId = source.readInt();
         this.sheetName = source.readString();
         this.playerId = source.readInt();
+        this.tableId = source.readInt();
     }
 
     public int getSheetId()
@@ -64,6 +67,16 @@ public class Sheet implements Parcelable
         this.playerId = playerId;
     }
 
+    public int getTableId()
+    {
+        return tableId;
+    }
+
+    public void setTableId(int tableId)
+    {
+        this.tableId = tableId;
+    }
+
     @Override
     public int describeContents()
     {
@@ -76,6 +89,7 @@ public class Sheet implements Parcelable
         dest.writeInt(sheetId);
         dest.writeString(sheetName);
         dest.writeInt(sheetId);
+        dest.writeInt(tableId);
     }
 
     public static final Parcelable.Creator<Sheet> CREATOR = new Creator<Sheet>()
