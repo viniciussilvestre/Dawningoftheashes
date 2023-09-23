@@ -1,4 +1,4 @@
-package com.example.dawningoftheashes;
+package com.example.dawningoftheashes.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.dawningoftheashes.R;
 import com.example.dawningoftheashes.databinding.ActivityShowTableBinding;
 import com.example.dawningoftheashes.model.IdViewModel;
 import com.example.dawningoftheashes.model.TableViewModel;

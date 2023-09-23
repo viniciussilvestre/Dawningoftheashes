@@ -6,6 +6,8 @@ import java.util.Date;
 
 public class Notes
 {
+    private static int idCounter = 0;
+    private int noteId;
     private String title;
     private String content;
     private final Date creationDate;
@@ -13,10 +15,26 @@ public class Notes
 
     public Notes(String title, String content, Date creationDate, Date editDate)
     {
+        this.noteId = idCounter++;
         this.title = title;
         this.content = content;
         this.creationDate = creationDate;
         this.editDate = editDate;
+    }
+
+    public static int getIdCounter()
+    {
+        return idCounter;
+    }
+
+    public int getNoteId()
+    {
+        return noteId;
+    }
+
+    public void setNoteId(int noteId)
+    {
+        this.noteId = noteId;
     }
 
     public String getTitle()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,19 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DawningOfTheAshes"
-        tools:targetApi="33">
+        tools:targetApi="33" >
         <activity
             android:name=".ui.CreateCampaignNotes"
             android:exported="false" />
         <activity
-            android:name=".ShowTable"
-            android:exported="false" />
-        <activity
-            android:name=".Table"
+            android:name=".ui.ShowTable"
             android:exported="false" />
         <activity
             android:name=".ui.WelcomeActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,14 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.TableView"
-            android:exported="false" />
-        <activity
             android:name=".ui.CreateTable"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

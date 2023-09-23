@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.dawningoftheashes.databinding.ActivityMainBinding;
-import com.example.dawningoftheashes.model.Notes;
 import com.example.dawningoftheashes.model.Player;
 import com.example.dawningoftheashes.model.PlayerViewModel;
 import com.example.dawningoftheashes.ui.CreateTable;
+import com.example.dawningoftheashes.ui.ShowTable;
 import com.google.android.material.elevation.SurfaceColors;
 
 import java.util.ArrayList;
@@ -147,7 +146,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
             }
             else
             {
-                currentLocalPlayer = playerViewModel.getLocalPlayer().getValue();
+
+                playerViewModel.getLocalPlayer().observe(this, player ->
+                {
+                    currentLocalPlayer = player;
+                });
             }
         }
     }

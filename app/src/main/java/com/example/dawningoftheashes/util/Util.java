@@ -15,4 +15,6 @@ public class Util
     public static final String NOTE_CONTENT = "note_content";
     public static final String CREATION_DATE = "creation_date";
     public static final String MODIFIED_DATE = "modification_date";
+    public static final String NOTES_ID = "notes_id";
+    public static final String NOTE_EXIST = "note_exist";
 }

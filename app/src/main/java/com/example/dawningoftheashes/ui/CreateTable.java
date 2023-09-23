@@ -19,7 +19,6 @@ import com.google.android.material.elevation.SurfaceColors;
 public class CreateTable extends AppCompatActivity
 {
     private ActivityCreateTableBinding binding;
-    private PlayerViewModel playerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
