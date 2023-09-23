@@ -2,6 +2,7 @@ package com.example.dawningoftheashes.util;
 
 import androidx.room.TypeConverter;
 
+import com.example.dawningoftheashes.model.Notes;
 import com.example.dawningoftheashes.model.Player;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -68,5 +69,33 @@ public class Converters
     {
         Gson gson = new Gson();
         return gson.toJson(player);
+    }
+
+    @TypeConverter
+    public static ArrayList<String> fromString(String value)
+    {
+        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+        return new Gson().fromJson(value, listType);
+    }
+
+    @TypeConverter
+    public static String fromStringArrayList(ArrayList<String> list)
+    {
+        Gson gson = new Gson();
+        return gson.toJson(list);
+    }
+
+    @TypeConverter
+    public static ArrayList<Notes> fromStringNotes(String value)
+    {
+        Type listType = new TypeToken<ArrayList<Notes>>() {}.getType();
+        return new Gson().fromJson(value, listType);
+    }
+
+    @TypeConverter
+    public static String fromNotesArrayList(ArrayList<Notes> list)
+    {
+        Gson gson = new Gson();
+        return gson.toJson(list);
     }
 }

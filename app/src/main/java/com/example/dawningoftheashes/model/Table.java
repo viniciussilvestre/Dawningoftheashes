@@ -16,7 +16,7 @@ public class Table
     private Player gm;
     private int startingLevel;
     private int currentLevel;
-    private String notes;
+    private ArrayList<Notes> notes;
     private ArrayList<Monster> monsters;
 
     public Table()
@@ -24,7 +24,20 @@ public class Table
 
     }
 
-    public Table(int id, String name, ArrayList<Player> players, ArrayList<Sheet> sheets, Player gm, int startingLevel, String notes, ArrayList<Monster> monsters)
+    public Table(Table table)
+    {
+        this.id = table.getId();
+        this.name = table.getName();
+        this.players = table.getPlayers();
+        this.sheets = table.getSheets();
+        this.gm = table.getGm();
+        this.startingLevel = table.getStartingLevel();
+        this.currentLevel = table.getCurrentLevel();
+        this.notes = table.getNotes();
+        this.monsters = table.getMonsters();
+    }
+
+    public Table(int id, String name, ArrayList<Player> players, ArrayList<Sheet> sheets, Player gm, int startingLevel, ArrayList<Notes> notes, ArrayList<Monster> monsters)
     {
         this.id = id;
         this.name = name;
@@ -107,12 +120,12 @@ public class Table
         this.currentLevel = currentLevel;
     }
 
-    public String getNotes()
+    public ArrayList<Notes> getNotes()
     {
         return notes;
     }
 
-    public void setNotes(String notes)
+    public void setNotes(ArrayList<Notes> notes)
     {
         this.notes = notes;
     }

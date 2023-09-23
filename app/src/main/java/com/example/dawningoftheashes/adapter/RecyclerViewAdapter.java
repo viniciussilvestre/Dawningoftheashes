@@ -1,12 +1,15 @@
 package com.example.dawningoftheashes.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dawningoftheashes.R;
@@ -15,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.example.dawningoftheashes.model.Table;
+import com.google.android.material.elevation.SurfaceColors;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 {
@@ -42,7 +46,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     {
         Table table = Objects.requireNonNull(tablesList.get(position));
         String tableName = table.getName();
+        int level = table.getCurrentLevel();
+        holder.cardView.setCardBackgroundColor(SurfaceColors.SURFACE_0.getColor(context));
         holder.name.setText(tableName);
+        holder.level.setText(String.valueOf(level));
     }
 
     @Override
@@ -55,11 +62,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     {
         OnContactClickListener onContactClickListener;
         public TextView name;
+        public CardView cardView;
+        public ImageView imageView;
+        public TextView level;
 
         public ViewHolder(@NonNull View itemView, OnContactClickListener onContactClickListener)
         {
             super(itemView);
             name = itemView.findViewById(R.id.rowTableName);
+            cardView = itemView.findViewById(R.id.tableRowCardView);
+            imageView = itemView.findViewById(R.id.tableImage);
+            level = itemView.findViewById(R.id.levelTextView);
             this.onContactClickListener = onContactClickListener;
             itemView.setOnClickListener(this);
         }

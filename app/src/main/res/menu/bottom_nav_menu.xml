@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/table_info"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/tableInfo" />
+
+    <item
+        android:id="@+id/campaign_notes"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/campaignNotes" />
+
+    <item
+        android:id="@+id/monsters_used"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/monstersUsed" />
+
+</menu>

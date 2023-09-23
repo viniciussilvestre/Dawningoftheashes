@@ -11,15 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.dawningoftheashes.databinding.ActivityMainBinding;
+import com.example.dawningoftheashes.model.Notes;
 import com.example.dawningoftheashes.model.Player;
 import com.example.dawningoftheashes.model.PlayerViewModel;
 import com.example.dawningoftheashes.ui.CreateTable;
-import com.example.dawningoftheashes.ui.TableView;
 import com.google.android.material.elevation.SurfaceColors;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import com.example.dawningoftheashes.adapter.RecyclerViewAdapter;
@@ -63,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                     table.setCurrentLevel(startingLevel);
                     table.setName(data.getStringExtra(Util.NAME_REPLY));
                     table.setGm(currentLocalPlayer);
+                    table.setNotes(new ArrayList<>());
+                    table.setMonsters(new ArrayList<>());
+                    table.setPlayers(new ArrayList<>());
+                    table.setSheets(new ArrayList<>());
                     TableViewModel.insertTable(table);
                 }
             }
@@ -160,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     public void onContactClick(int position)
     {
         Table table = Objects.requireNonNull(tableViewModel.getAllTables().getValue()).get(position);
-        Intent intent = new Intent(MainActivity.this, TableView.class);
+        Intent intent = new Intent(MainActivity.this, ShowTable.class);
         intent.putExtra(Util.TABLE_ID, table.getId());
         openTable(intent);
     }
