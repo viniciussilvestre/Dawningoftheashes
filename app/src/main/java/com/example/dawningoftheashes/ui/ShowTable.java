@@ -47,7 +47,7 @@ public class ShowTable extends AppCompatActivity
         binding = ActivityShowTableBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.table_info, R.id.campaign_notes, R.id.table_info).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.table_info, R.id.campaign_notes, R.id.monsters_used, R.id.player_sheets).build();
         NavController navController = getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);

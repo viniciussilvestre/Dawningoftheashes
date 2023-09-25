@@ -3,70 +3,48 @@ package com.example.dawningoftheashes.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dawningoftheashes.R;
+import com.example.dawningoftheashes.adapter.RecyclerViewAdapterNotes;
+import com.example.dawningoftheashes.databinding.FragmentTableInfoBinding;
+import com.example.dawningoftheashes.model.IdViewModel;
+import com.example.dawningoftheashes.model.Table;
+import com.example.dawningoftheashes.model.TableViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TableInfo#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TableInfo extends Fragment
 {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public TableInfo()
-    {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TableInfo.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TableInfo newInstance(String param1, String param2)
-    {
-        TableInfo fragment = new TableInfo();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private FragmentTableInfoBinding binding;
+    private TableViewModel tableViewModel;
+    private int id;
+    private Table currentTable;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null)
-        {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        tableViewModel = new ViewModelProvider.AndroidViewModelFactory(TableInfo.this.requireActivity().getApplication()).create(TableViewModel.class);
+        IdViewModel idViewModel = new ViewModelProvider(requireActivity()).get(IdViewModel.class);
+        id = idViewModel.getSelectedItem();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_table_info, container, false);
+        binding = FragmentTableInfoBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        tableViewModel.getTable(id).observe(getViewLifecycleOwner(), table ->
+        {
+            if (table != null)
+            {
+                currentTable = table;
+                binding.tableNameTextField.setText(currentTable.getName());
+            }
+        });
+        return root;
     }
 }

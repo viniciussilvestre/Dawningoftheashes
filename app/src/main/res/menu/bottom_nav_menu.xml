@@ -3,17 +3,22 @@
 
     <item
         android:id="@+id/table_info"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/info_icon"
         android:title="@string/tableInfo" />
 
     <item
         android:id="@+id/campaign_notes"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/notes_icon"
         android:title="@string/campaignNotes" />
 
     <item
         android:id="@+id/monsters_used"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/monster_icon"
         android:title="@string/monstersUsed" />
+
+    <item
+        android:id="@+id/player_sheets"
+        android:icon="@drawable/sheets_icon"
+        android:title="@string/playerSheets" />
 
 </menu>

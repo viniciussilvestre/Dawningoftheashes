@@ -12,11 +12,12 @@
     <string name="notAPlayerYet">Player name field is empty</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tableInfo">Table info</string>
-    <string name="campaignNotes">Campaign notes</string>
-    <string name="monstersUsed">Monsters used</string>
+    <string name="tableInfo">Info</string>
+    <string name="campaignNotes">Notes</string>
+    <string name="monstersUsed">Enemies</string>
     <string name="addButton">Add element</string>
     <string name="notesAdd">Add note</string>
     <string name="noteTitle">Title</string>
     <string name="tableCurrentLevel">Current level</string>
+    <string name="playerSheets">Sheets</string>
 </resources>
