@@ -14,4 +14,11 @@
         <item name="cornerSize">14dp</item>
     </style>
 
+    <style name="tableTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/welcomePadding</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
 </resources>

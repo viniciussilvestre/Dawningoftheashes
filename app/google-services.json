@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "906925571964",
+    "project_id": "dawningoftheashes",
+    "storage_bucket": "dawningoftheashes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906925571964:android:7fe948947821dd20bb2ef9",
+        "android_client_info": {
+          "package_name": "com.example.dawningoftheashes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCttajcEwSTP-hm-JRMqEJMBffKjLT2Xvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

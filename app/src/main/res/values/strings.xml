@@ -20,4 +20,6 @@
     <string name="noteTitle">Title</string>
     <string name="tableCurrentLevel">Current level</string>
     <string name="playerSheets">Sheets</string>
+    <string name="levelText">Level</string>
+    <string name="tableImage">Table image</string>
 </resources>

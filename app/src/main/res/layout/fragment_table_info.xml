@@ -9,14 +9,33 @@
 
         <TextView
             android:id="@+id/tableNameTextField"
+            style="@style/tableTextStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/tableName"
-            android:padding="@dimen/welcomePadding"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="#78909C"
+            app:layout_constraintStart_toEndOf="@+id/tableProfileImage"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/levelTextView"
+            style="@style/tableTextStyle"
+            android:layout_width="wrap_content"
+            android:hint="@string/levelText"
+            android:textColorHint="#78909C"
+            app:layout_constraintStart_toEndOf="@+id/tableProfileImage"
+            app:layout_constraintTop_toBottomOf="@+id/tableNameTextField" />
+
+        <ImageView
+            android:id="@+id/tableProfileImage"
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_foreground"
+            android:contentDescription="@string/tableImage" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
