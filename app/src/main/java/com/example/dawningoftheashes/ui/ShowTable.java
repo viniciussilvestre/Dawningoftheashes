@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.example.dawningoftheashes.R;
 import com.example.dawningoftheashes.databinding.ActivityShowTableBinding;
 import com.example.dawningoftheashes.model.IdViewModel;
+import com.example.dawningoftheashes.model.Table;
 import com.example.dawningoftheashes.model.TableViewModel;
 import com.example.dawningoftheashes.util.Util;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,6 +28,7 @@ public class ShowTable extends AppCompatActivity
     private ActivityShowTableBinding binding;
     private TableViewModel tableViewModel;
     private IdViewModel idViewModel;
+    private Table currentTable;
     int id;
     private Context context;
 
@@ -47,10 +49,23 @@ public class ShowTable extends AppCompatActivity
         binding = ActivityShowTableBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.table_info, R.id.campaign_notes, R.id.monsters_used, R.id.player_sheets).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.table_info, R.id.campaign_notes, R.id.monsters_used).build();
         NavController navController = getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
+
+        tableViewModel = new ViewModelProvider.AndroidViewModelFactory(ShowTable.this.getApplication()).create(TableViewModel.class);
+        tableViewModel.getTable(id).observe(this, table ->
+        {
+            if (table != null)
+            {
+                currentTable = table;
+            }
+            else
+            {
+                finish();
+            }
+        });
     }
 
     @NonNull
@@ -64,22 +79,22 @@ public class ShowTable extends AppCompatActivity
         return ((NavHostFragment) fragment).getNavController();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu)
-//    {
-//        getMenuInflater().inflate(R.menu.menu_sheet_view, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_sheet_view, menu);
+        return true;
+    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item)
-//    {
-//        int id = item.getItemId();
-//        if (id == R.id.action_delete)
-//        {
-//            SheetViewModel.deleteDnd(sheetDAndD);
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        if (id == R.id.action_delete)
+        {
+            TableViewModel.deleteTable(currentTable);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

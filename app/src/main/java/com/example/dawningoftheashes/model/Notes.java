@@ -4,7 +4,7 @@ import android.os.Parcelable;
 
 import java.util.Date;
 
-public class Notes
+public class Notes implements Comparable<Notes>
 {
     private static int idCounter = 0;
     private int noteId;
@@ -70,5 +70,11 @@ public class Notes
     public void setEditDate(Date editDate)
     {
         this.editDate = editDate;
+    }
+
+    @Override
+    public int compareTo(Notes o)
+    {
+        return getEditDate().compareTo(o.getEditDate());
     }
 }

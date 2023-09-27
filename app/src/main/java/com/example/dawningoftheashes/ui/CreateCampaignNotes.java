@@ -31,6 +31,9 @@ public class CreateCampaignNotes extends AppCompatActivity
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_2.getColor(this));
         getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(this));
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_campaign_notes);
+        binding.getRoot().setBackgroundColor(SurfaceColors.SURFACE_2.getColor(this));
+        binding.noteContentCard.setCardBackgroundColor(SurfaceColors.SURFACE_0.getColor(this));
+        binding.noteTitleCard.setCardBackgroundColor(SurfaceColors.SURFACE_0.getColor(this));
         handleIntent(getIntent());
 
         if (existingNote)

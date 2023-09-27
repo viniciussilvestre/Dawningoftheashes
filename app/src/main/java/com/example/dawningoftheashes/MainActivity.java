@@ -111,13 +111,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy)
             {
-                if (dy != 0 && binding.addButton.isExtended())
+                if (dy != 0 && binding.addButton.isExpanded())
                 {
-                    binding.addButton.shrink();
+                    binding.addButton.setExpanded(false);
                 }
-                if (dy < 0 && !binding.addButton.isExtended())
+                if (dy < 0 && !binding.addButton.isExpanded())
                 {
-                    binding.addButton.extend();
+                    binding.addButton.setExpanded(true);
                 }
                 super.onScrolled(recyclerView, dx, dy);
             }

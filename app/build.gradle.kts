@@ -54,7 +54,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.7.3")
     implementation("androidx.navigation:navigation-ui:2.7.3")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-    implementation("com.android.support:palette-v7:34.0.0")
     annotationProcessor("androidx.room:room-compiler:2.5.2")
     androidTestImplementation("androidx.room:room-testing:2.6.0-rc01")
     implementation("com.android.volley:volley:1.2.1")

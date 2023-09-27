@@ -23,10 +23,4 @@
         android:label="Enemies"
         tools:layout="@layout/fragment_monsters_used"/>
 
-    <fragment
-        android:id="@+id/player_sheets"
-        android:name="com.example.dawningoftheashes.ui.PlayerSheets"
-        android:label="Sheets"
-        tools:layout="@layout/fragment_player_sheets"/>
-
 </navigation>

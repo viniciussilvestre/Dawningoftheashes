@@ -16,9 +16,4 @@
         android:icon="@drawable/monster_icon"
         android:title="@string/monstersUsed" />
 
-    <item
-        android:id="@+id/player_sheets"
-        android:icon="@drawable/sheets_icon"
-        android:title="@string/playerSheets" />
-
 </menu>

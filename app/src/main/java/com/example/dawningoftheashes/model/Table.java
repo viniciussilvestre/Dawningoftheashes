@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 @Entity(tableName = "rpg_tables")
 public class Table
@@ -122,7 +124,24 @@ public class Table
 
     public ArrayList<Notes> getNotes()
     {
-        return notes;
+        ArrayList<Notes> aux = notes;
+        Collections.sort(aux);
+        Collections.reverse(aux);
+        return aux;
+    }
+
+    public ArrayList<Notes> getLatestNotes()
+    {
+        ArrayList<Notes> latestNotes = new ArrayList<>();
+        ArrayList<Notes> aux = getNotes();
+        for (int i = 0; i < 3; i++)
+        {
+            if (i < aux.size())
+            {
+                latestNotes.add(aux.get(i));
+            }
+        }
+        return latestNotes;
     }
 
     public void setNotes(ArrayList<Notes> notes)

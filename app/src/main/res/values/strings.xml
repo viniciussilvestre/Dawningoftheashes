@@ -22,4 +22,10 @@
     <string name="playerSheets">Sheets</string>
     <string name="levelText">Level</string>
     <string name="tableImage">Table image</string>
+    <string name="playersText">Players</string>
+    <string name="initiativeText">Initiative</string>
+    <string name="clearInitiative">Clear initiative</string>
+    <string name="levelLabel">Level:</string>
+    <string name="options">Options</string>
+    <string name="deleteCharacter">Delete table</string>
 </resources>
