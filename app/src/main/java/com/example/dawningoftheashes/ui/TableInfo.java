@@ -108,6 +108,7 @@ public class TableInfo extends Fragment implements RecyclerViewAdapterNotes.OnCo
                 notes = table.getLatestNotes();
                 recyclerViewAdapterNotes = new RecyclerViewAdapterNotes(notes, TableInfo.this.requireActivity(), this);
                 binding.notesRecyclerView.setAdapter(recyclerViewAdapterNotes);
+                binding.notesRecyclerView.setNestedScrollingEnabled(false);
             }
         });
 
@@ -119,6 +120,42 @@ public class TableInfo extends Fragment implements RecyclerViewAdapterNotes.OnCo
         binding.addButton.setOnClickListener(view ->
         {
 
+        });
+
+        binding.playerTextView.setOnClickListener(view ->
+        {
+            if (binding.playersRecyclerView.getVisibility() == View.GONE)
+            {
+                binding.playersRecyclerView.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                binding.playersRecyclerView.setVisibility(View.GONE);
+            }
+        });
+
+        binding.initiativeTextView.setOnClickListener(view ->
+        {
+            if (binding.initiativeRecyclerView.getVisibility() == View.GONE)
+            {
+                binding.initiativeRecyclerView.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                binding.initiativeRecyclerView.setVisibility(View.GONE);
+            }
+        });
+
+        binding.notesTextView.setOnClickListener(view ->
+        {
+            if (binding.notesRecyclerView.getVisibility() == View.GONE)
+            {
+                binding.notesRecyclerView.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                binding.notesRecyclerView.setVisibility(View.GONE);
+            }
         });
 
         return root;

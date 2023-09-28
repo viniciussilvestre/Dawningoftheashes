@@ -17,7 +17,9 @@ import com.example.dawningoftheashes.model.Notes;
 import com.example.dawningoftheashes.model.Table;
 import com.google.android.material.elevation.SurfaceColors;
 
+import java.text.Format;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class RecyclerViewAdapterNotes extends RecyclerView.Adapter<RecyclerViewAdapterNotes.ViewHolderNotes>
@@ -46,8 +48,9 @@ public class RecyclerViewAdapterNotes extends RecyclerView.Adapter<RecyclerViewA
     {
         Notes note = Objects.requireNonNull(notes.get(position));
         String noteTitle = note.getTitle();
-        String noteCreationDate = note.getCreationDate().toString();
-        String noteModificationDate = note.getEditDate().toString();
+        Format dateFormat = android.text.format.DateFormat.getDateFormat(context);
+        String noteCreationDate = dateFormat.format(note.getCreationDate());
+        String noteModificationDate = dateFormat.format(note.getEditDate());
         holder.cardView.setCardBackgroundColor(SurfaceColors.SURFACE_0.getColor(context));
         holder.noteTitle.setText(noteTitle);
         holder.creationDate.setText(noteCreationDate);

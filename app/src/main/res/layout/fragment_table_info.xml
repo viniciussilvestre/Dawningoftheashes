@@ -99,10 +99,11 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/playersCardView"
                     android:layout_width="0dp"
-                    android:layout_height="300dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:maxHeight="@dimen/recyclerMaxHeight"
                     app:cardCornerRadius="@dimen/cardRadius"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +116,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/playersRecyclerView"
                             android:layout_width="0dp"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +125,7 @@
                         <TextView
                             android:id="@+id/playerTextView"
                             style="@style/tableLabelTextStyle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/playersText"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -136,10 +137,11 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/thirdCatdView"
                     android:layout_width="0dp"
-                    android:layout_height="300dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:maxHeight="@dimen/recyclerMaxHeight"
                     app:cardCornerRadius="@dimen/cardRadius"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +154,7 @@
                         <TextView
                             android:id="@+id/initiativeTextView"
                             style="@style/tableLabelTextStyle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/initiativeText"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +164,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/initiativeRecyclerView"
                             android:layout_width="0dp"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -192,7 +194,7 @@
                         <TextView
                             android:id="@+id/notesTextView"
                             style="@style/tableLabelTextStyle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/campaignNotes"
                             app:layout_constraintEnd_toEndOf="parent"

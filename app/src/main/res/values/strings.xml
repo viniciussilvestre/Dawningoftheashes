@@ -28,4 +28,7 @@
     <string name="levelLabel">Level:</string>
     <string name="options">Options</string>
     <string name="deleteCharacter">Delete table</string>
+    <string name="rowNoteTitle">Title:</string>
+    <string name="createdRow">Created:</string>
+    <string name="modifiedRow">Modified:</string>
 </resources>
