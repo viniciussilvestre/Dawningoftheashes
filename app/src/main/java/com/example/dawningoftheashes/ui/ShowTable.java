@@ -2,6 +2,7 @@ package com.example.dawningoftheashes.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -9,7 +10,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +26,7 @@ import com.example.dawningoftheashes.model.IdViewModel;
 import com.example.dawningoftheashes.model.Table;
 import com.example.dawningoftheashes.model.TableViewModel;
 import com.example.dawningoftheashes.util.Util;
+import com.example.dawningoftheashes.util.WiFiDirectBroadcastReceiver;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.elevation.SurfaceColors;
 
@@ -29,6 +36,10 @@ public class ShowTable extends AppCompatActivity
     private TableViewModel tableViewModel;
     private IdViewModel idViewModel;
     private Table currentTable;
+    WifiP2pManager manager;
+    WifiP2pManager.Channel channel;
+    BroadcastReceiver receiver;
+    IntentFilter intentFilter;
     int id;
     private Context context;
 
@@ -36,6 +47,41 @@ public class ShowTable extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        channel = manager.initialize(this, getMainLooper(), null);
+        receiver = new WiFiDirectBroadcastReceiver(manager, channel, this);
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED)
+        {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        manager.discoverPeers(channel, new WifiP2pManager.ActionListener()
+        {
+            @Override
+            public void onSuccess()
+            {
+
+            }
+
+            @Override
+            public void onFailure(int i)
+            {
+
+            }
+        });
+
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_2.getColor(this));
         getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(this));
         Bundle data = getIntent().getExtras();
@@ -67,6 +113,22 @@ public class ShowTable extends AppCompatActivity
             }
         });
     }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        registerReceiver(receiver, intentFilter);
+
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }
+
 
     @NonNull
     private NavController getNavController()

@@ -43,6 +43,18 @@ public class TableInfo extends Fragment implements RecyclerViewAdapterNotes.OnCo
     private Table currentTable;
     private ArrayList<Notes> notes;
 
+    ActivityResultLauncher<Intent> launchAddNewPlayer = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result ->
+            {
+                if (result.getResultCode() == Activity.RESULT_OK)
+                {
+                    Intent data = result.getData();
+                    assert data != null;
+                }
+            }
+    );
+
     ActivityResultLauncher<Intent> launchCreateNote = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result ->
@@ -119,7 +131,8 @@ public class TableInfo extends Fragment implements RecyclerViewAdapterNotes.OnCo
 
         binding.addButton.setOnClickListener(view ->
         {
-
+            Intent intent = new Intent(TableInfo.this.requireActivity(), ConnectNewPlayer.class);
+            openAddNewPlayer(intent);
         });
 
         binding.playerTextView.setOnClickListener(view ->
@@ -189,6 +202,11 @@ public class TableInfo extends Fragment implements RecyclerViewAdapterNotes.OnCo
     public void openCreateNote(Intent intent)
     {
         launchCreateNote.launch(intent);
+    }
+
+    public void openAddNewPlayer(Intent intent)
+    {
+        launchAddNewPlayer.launch(intent);
     }
 
     @Override
